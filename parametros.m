@@ -30,9 +30,24 @@ emax    = 1.8;      % razão de boost máxima
 J       = 0.25;     % kg·m² — inércia do virabrequim (provisório)
 
 % --- Condições iniciais ---
-N0      = 800;                  % RPM
+N0      = 800;                 % RPM
 omega0  = N0 * 2*pi/60;        % rad/s = 83.776
 Pim0    = 40000;               % Pa — pressão inicial no coletor
 pme_calculado = 0;             % placeholder — será substituído internamente
 
-alpha   = 5; 
+%alpha   = 5; 
+
+
+P_AC    = 2000;  % W — compressor A/C
+P_alt   = 600;   % W — alternador
+P_fan   = 200;   % W — ventilador radiador
+
+delta_zeta = 0.05;
+SA_0 = 20;
+
+% Cenários de temperatura ambiente
+%T_im = 300;  % padrão — trocar para cada simulação:
+%T_im = 278;  % 5°C  — dia frio
+% T_im = 293;  % 20°C — ameno
+T_im = 300;  % 27°C — padrão
+% T_im = 313;  % 40°C — dia quente
