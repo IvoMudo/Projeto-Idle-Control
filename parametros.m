@@ -1,53 +1,55 @@
-% === SCRIPT DE PARÂMETROS — rodar antes de qualquer simulação ===
+%% PARÂMETROS DO MODELO COMPLETO
 
-% --- Pessoa 1: Fluxo de Ar ---
-P_atm   = 101325;   % Pa — pressão atmosférica
-T_im    = 300;      % K  — temperatura do coletor (isotérmico)
-R       = 287;      % J/kg·K — constante do gás
-kappa   = 1.4;      % razão de calores específicos
-Cd      = 0.7;      % coeficiente de descarga da borboleta
-Vm      = 0.0015;   % m³ — volume do coletor
-nVol    = 0.85;     % eficiência volumétrica
-V_d     = 0.0013;   % m³ — cilindrada do Firefly 1.3
-N_ciclo = 2;        % motor 4 tempos
-V       = 0.0015;   % m³ — volume do coletor de admissão (1,5 litros)
+% Fluxo de Ar
+P_atm   = 101325;
+T_im    = 300;
+R       = 287;
+kappa   = 1.4;
+Cd      = 0.7;
+V       = 0.0015;
+nVol    = 0.85;
+V_d     = 0.0013;
+N_ciclo = 2;
 
-% --- Pessoa 2: Torque ---
-Hl      = 44e6;     % J/kg — poder calorífico inferior gasolina
-sigma0  = 14.7;     % razão estequiométrica ar/combustível
-SA      = 20;       % graus BTDC — avanço de ignição inicial
-SA_MBT  = 25;       % graus BTDC — ângulo de máximo torque
-kqueda  = 0.001;    % coeficiente de queda da eficiência de ignição
-k1      = 1.44e5;   % Pa — parâmetro ETH de atrito
-k2      = 0.46;     % adimensional — parâmetro ETH
-k3      = 9.1e-4;   % s²/m² — parâmetro ETH
-k4      = 0.075;    % m — parâmetro ETH
-S       = 0.0814;   % m — stroke do Firefly 1.3
-B       = 0.072;    % m — bore do Firefly 1.3
-emax    = 1.8;      % razão de boost máxima
+% Torque
+Hl      = 44e6;
+sigma0  = 14.7;
+SA      = 20;
+SA_MBT  = 25;
+kqueda  = 0.001;
+k1      = 1.44e5;
+k2      = 0.46;
+k3      = 9.1e-4;
+k4      = 0.075;
+S       = 0.0814;
+B       = 0.072;
+emax    = 1.8;
 
-% --- Pessoa 3: Rotação ---
-J       = 0.25;     % kg·m² — inércia do virabrequim (provisório)
+% Rotação
+J       = 0.25;
 
-% --- Condições iniciais ---
-N0      = 800;                 % RPM
-omega0  = N0 * 2*pi/60;        % rad/s = 83.776
-Pim0    = 40000;               % Pa — pressão inicial no coletor
-pme_calculado = 0;             % placeholder — será substituído internamente
+% Condições iniciais
+alpha   = 0.558;
+omega0  = 83.776;
+N0      = 800;
+Pim0    = 40000;
 
-%alpha   = 5; 
+% Cargas parasitas
+P_AC        = 2000;
+P_alt       = 600;
+P_fan       = 200;
+P_eletrico  = 400;
+P_aquecedor = 1500;
+omega_nominal = 83.776;
 
+% Proteção stall
+N_stall = 550;
 
-P_AC    = 2000;  % W — compressor A/C
-P_alt   = 600;   % W — alternador
-P_fan   = 200;   % W — ventilador radiador
+% Controlador
+Kp    = 0.1848;
+Ki    = 5.8824;
+N_ref = 800;
 
+% Emissões
+SA_0       = 20;
 delta_zeta = 0.05;
-SA_0 = 20;
-
-% Cenários de temperatura ambiente
-%T_im = 300;  % padrão — trocar para cada simulação:
-%T_im = 278;  % 5°C  — dia frio
-% T_im = 293;  % 20°C — ameno
-T_im = 300;  % 27°C — padrão
-% T_im = 313;  % 40°C — dia quente
