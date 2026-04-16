@@ -8,7 +8,7 @@ kappa   = 1.4;
 Cd      = 0.7;
 V       = 0.0015;
 nVol    = 0.85;
-V_d     = 0.0013;
+V_d     = 0.001;
 N_ciclo = 2;
 
 % Torque
@@ -30,9 +30,13 @@ J       = 0.25;
 
 % Condições iniciais
 alpha   = 0.558;
-omega0  = 83.776;
-N0      = 800;
-Pim0    = 40000;
+%omega0  = 83.776;
+%N0      = 800;
+%Pim0    = 40000;
+% Condições iniciais de equilíbrio
+N0      = N_eq;       % ex: 800.x RPM
+omega0  = omega_eq;   % ex: 83.8xx rad/s
+Pim0    = Pim_eq;     % ex: 29xxx Pa
 
 % Cargas parasitas
 P_AC        = 2000;
